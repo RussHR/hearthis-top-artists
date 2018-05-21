@@ -40,6 +40,7 @@
     "webpack-dev-server": "^1.16.5"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "lodash": "^4.17.10",
     "normalize.css": "^4.2.0",
     "prop-types": "^15.6.1",

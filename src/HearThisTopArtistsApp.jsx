@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import request from 'superagent';
 
 import ArtistList from './components/ArtistList';
+import ArtistPage from './components/ArtistPage';
 
 import { useTrackstoAddArtists } from './stateUpdaters';
 
@@ -21,6 +22,7 @@ export default class HearThisTopArtistsApp extends Component {
 
         this.fetchTopArtists = this.fetchTopArtists.bind(this);
         this.setActiveArtist = this.setActiveArtist.bind(this);
+        this.closeArtistDetails = this.closeArtistDetails.bind(this);
     }
 
     /**
@@ -80,13 +82,31 @@ export default class HearThisTopArtistsApp extends Component {
         this.setState(() => ({ activeArtistIndex }));
     }
 
+    /**
+     * Sets an active artist and lists their tracks.
+     *
+     * @param {number|null} index - index of the artists in the state to set active
+     * @returns {undefined}
+     */
+    closeArtistDetails() {
+        this.setState(() => ({ activeArtistIndex: null }));
+    }
+
+
     render() {
+        const { activeArtistIndex } = this.state;
+
         return (
-            <ArtistList
-                artists={this.state.artists}
-                onScrollNearBottom={this.fetchTopArtists}
-                onClickArtist={this.setActiveArtist}
-            />
+            <Fragment>
+                <ArtistList
+                    artists={this.state.artists}
+                    onScrollNearBottom={this.fetchTopArtists}
+                    onClickArtist={this.setActiveArtist}
+                />
+                {activeArtistIndex !== null &&
+                    <ArtistPage artist={this.state.artists[activeArtistIndex]} onClose={this.closeArtistDetails} />
+                }
+            </Fragment>
         );
     }
 }
