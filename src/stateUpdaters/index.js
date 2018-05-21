@@ -11,6 +11,10 @@ export function useTrackstoAddArtists(prevArtists, tracks) {
     const artists = cloneDeep(prevArtists);
 
     tracks.forEach(track => {
+        if (!track) {
+            return;
+        }
+
         const indexOfCurrentArtist = findIndex(artists, ['id', track.user.id]);
         if (indexOfCurrentArtist === -1){
             const { id, avatar_url, username, permalink_url, uri } = track.user;
