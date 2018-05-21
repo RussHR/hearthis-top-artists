@@ -17,10 +17,12 @@ export default class HearThisTopArtistsApp extends Component {
             artists: [],
             artistPage: 1,
             fetchingMoreArtists: false,
+            fetchingMoreSongsByArtist: false,
             activeArtistIndex: null
         };
 
         this.fetchTopArtists = this.fetchTopArtists.bind(this);
+        this.fetchMoreSongsByArtist = this.fetchMoreSongsByArtist.bind(this);
         this.setActiveArtist = this.setActiveArtist.bind(this);
         this.closeArtistDetails = this.closeArtistDetails.bind(this);
     }
@@ -45,7 +47,7 @@ export default class HearThisTopArtistsApp extends Component {
                     .then(res => {
                         this.addArtistsToState(res.body);
                     })
-                    .catch(err => {
+                    .catch(() => {
                         // implement error catching here
                     })
                     .finally(() => {
@@ -53,6 +55,36 @@ export default class HearThisTopArtistsApp extends Component {
                             return {
                                 artistPage: artistPage + 1,
                                 fetchingMoreArtists: false
+                            };
+                        });
+                    });
+            });
+        }
+    }
+
+    /**
+     * Fetches more songs for a specific artist.
+     *
+     * @returns {undefined}
+     */
+    fetchMoreSongsByArtist() {
+        // we only want to fetching more songs if we aren't already fetching more, and if there's an activeArtistIndex
+        const { fetchingMoreSongsByArtist, activeArtistIndex, artists } = this.state;
+        if (!fetchingMoreSongsByArtist && activeArtistIndex !== null) {
+            this.setState(() => ({ fetchingMoreSongsByArtist: true }), () => {
+                const artist = artists[activeArtistIndex];
+                const page = parseInt((artist.songs.length / 20) + 1, 10);
+                request.get(`${artist.uri}?type=tracks&page=${page}&count=20`)
+                    .then(res => {
+                        this.addArtistsToState(res.body);
+                    })
+                    .catch(() => {
+                        // implement error catching here
+                    })
+                    .finally(() => {
+                        this.setState(({ artistPage }) => {
+                            return {
+                                fetchingMoreSongsByArtist: false
                             };
                         });
                     });
@@ -107,7 +139,11 @@ export default class HearThisTopArtistsApp extends Component {
                     onClickArtist={this.setActiveArtist}
                 />
                 {activeArtistIndex !== null &&
-                    <ArtistPage artist={this.state.artists[activeArtistIndex]} onClose={this.closeArtistDetails} />
+                    <ArtistPage
+                        artist={this.state.artists[activeArtistIndex]}
+                        onClose={this.closeArtistDetails}
+                        onScrollNearBottom={this.fetchMoreSongsByArtist}
+                    />
                 }
             </Fragment>
         );

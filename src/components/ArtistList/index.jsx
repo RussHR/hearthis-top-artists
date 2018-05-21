@@ -8,7 +8,7 @@ import './artist_list.scss';
 
 export default class ArtistList extends Component {
     /**
-     * Creates an onScrollNearBottom handler, which is a throttle function.
+     * Creates an onScrollNearBottom handler, which is a throttled function.
      */
     constructor(props) {
         super(props);
@@ -40,7 +40,7 @@ export default class ArtistList extends Component {
      * @returns {undefined}
      */
     checkIfMoreArtistsNeeded() {
-        if (this.artistButtons && (this.artistButtons.getBoundingClientRect().bottom - 480) - window.innerHeight < 0) {
+        if (this.artistListEl && (this.artistListEl.getBoundingClientRect().bottom - 480) - window.innerHeight < 0) {
             this.props.onScrollNearBottom();
         }
     }
@@ -60,7 +60,7 @@ export default class ArtistList extends Component {
         return (
             <main>
                 <header>hearthis.at Top Artists</header>
-                <ul className="artistList__artistButtons" ref={c => { this.artistButtons = c; }}>
+                <ul className="artistList__artistButtons" ref={c => { this.artistListEl = c; }}>
                     {artists.map((artist, index) => (
                         <ArtistButton
                             key={artist.id}
