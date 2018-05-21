@@ -80,5 +80,22 @@ describe('stateUpdaters', () => {
             expect(newArtists[0]['songs'][2]).to.deep.equal(mockTrack2);
         });
 
+        it('should not add a track to an artist if it already exists', () => {
+            const mockTrack = {
+                title: 'Mock Song',
+                user: {
+                    id: 1234
+                }
+            };
+            const mockArtist = {
+                id: 1234,
+                songs: [mockTrack]
+            };
+            const oldArtists = [mockArtist];
+            const newArtists = useTrackstoAddArtists(oldArtists, [mockTrack]);
+
+            expect(newArtists).to.have.lengthOf(1);
+            expect(newArtists[0]['id']).to.equal(1234);
+        });
     });
 });

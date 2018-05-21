@@ -1,13 +1,13 @@
 /* eslint-disable no-undef, quotes */
 import { expect } from 'chai';
-import { shallow } from 'enzyme';
+import { render } from 'enzyme';
 import React from 'react';
 
 import ArtistList from './index';
 
 describe('<ArtistList />', () => {
     it('should render without any issues', () => {
-        const wrapper = shallow(<ArtistList artists={[]} />);
-        expect(wrapper.isEmptyRender()).to.be.false;
+        const wrapper = render(<ArtistList artists={[]} />);
+        expect(wrapper.text()).to.contain('hearthis.at Top Artists');
     });
 });

@@ -17,8 +17,13 @@ export default class HearThisTopArtistsApp extends Component {
             artistPage: 1,
             fetchingMoreArtists: false
         };
+
+        this.fetchTopArtists = this.fetchTopArtists.bind(this);
     }
 
+    /**
+     * Fetch initial tracks right after component mounts.
+     */
     componentDidMount() {
         this.fetchTopArtists();
     }
@@ -65,7 +70,7 @@ export default class HearThisTopArtistsApp extends Component {
 
     render() {
         return (
-            <ArtistList artists={this.state.artists} />
+            <ArtistList artists={this.state.artists} onScrollNearBottom={this.fetchTopArtists} />
         );
     }
 }

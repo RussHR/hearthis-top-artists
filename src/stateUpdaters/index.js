@@ -23,7 +23,11 @@ export function useTrackstoAddArtists(prevArtists, tracks) {
                 songs: [track]
             });
         } else {
-            artists[indexOfCurrentArtist].songs.push(track);
+            // add the song to the artist only if it isn't there already
+            const { songs } = artists[indexOfCurrentArtist];
+            if (findIndex(songs, ['id', track.id]) === -1) {
+                songs.push(track);
+            }
         }
     });
 
