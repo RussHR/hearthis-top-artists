@@ -33,11 +33,18 @@ export default class ArtistList extends Component {
         this.checkIfMoreArtistsNeeded();
     }
 
+    /**
+     * Checks if the bottom of the artist buttons is within 480px of the bottom of the window.
+     * Calls onScrollNearBottom (defined in constructor) if so.
+     *
+     * @returns {undefined}
+     */
     checkIfMoreArtistsNeeded() {
         if (this.artistButtons && (this.artistButtons.getBoundingClientRect().bottom - 480) - window.innerHeight < 0) {
             this.props.onScrollNearBottom();
         }
     }
+
     /**
      * Returns a throttled function that calls checkIfMoreArtistsNeeded every 100 ms.
      *

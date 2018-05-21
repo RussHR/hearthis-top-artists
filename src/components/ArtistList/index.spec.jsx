@@ -7,7 +7,12 @@ import ArtistList from './index';
 
 describe('<ArtistList />', () => {
     it('should render without any issues', () => {
-        const wrapper = render(<ArtistList artists={[]} />);
+        const mockProps = {
+            artists: [],
+            onScrollNearBottom: () => {},
+            onClickArtist: () => {}
+        };
+        const wrapper = render(<ArtistList {...mockProps} />);
         expect(wrapper.text()).to.contain('hearthis.at Top Artists');
     });
 });
