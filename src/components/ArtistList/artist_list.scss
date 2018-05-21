@@ -1,0 +1,13 @@
+@import '../../style/variables';
+
+.artistList__artistButtons {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.artistList__artistButton {
+    height: $artistList__artistButton-height;
+    width: 100%;
+    margin: ($base-unit * 0.5) 0;
+    -webkit-appearance: none;
+}

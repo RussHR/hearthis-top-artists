@@ -13,8 +13,13 @@ export function useTrackstoAddArtists(prevArtists, tracks) {
     tracks.forEach(track => {
         const indexOfCurrentArtist = findIndex(artists, ['id', track.user.id]);
         if (indexOfCurrentArtist === -1){
+            const { id, avatar_url, username, permalink_url, uri } = track.user;
             artists.push({
-                id: track.user.id,
+                id,
+                avatar_url,
+                username,
+                permalink_url,
+                uri,
                 songs: [track]
             });
         } else {

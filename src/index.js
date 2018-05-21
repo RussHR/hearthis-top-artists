@@ -7,6 +7,6 @@ if (module.hot) {
 }
 
 import 'normalize.css';
-import './main.scss';
+import './style/main.scss';
 
 render(<HearThisTopArtistsApp />, document.getElementById('hear-this-top-artists-app'));

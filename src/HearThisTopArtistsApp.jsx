@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import request from 'superagent';
 
+import ArtistList from './components/ArtistList';
+
 import { useTrackstoAddArtists } from './stateUpdaters';
 
 /**
@@ -62,6 +64,8 @@ export default class HearThisTopArtistsApp extends Component {
     }
 
     render() {
-        return (<div>HearThisTopArtistsApp</div>);
+        return (
+            <ArtistList artists={this.state.artists} />
+        );
     }
 }
