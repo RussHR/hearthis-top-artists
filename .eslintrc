@@ -1,0 +1,45 @@
+{
+    "plugins": [
+        "react"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+          "jsx": true
+        }
+    },
+    "env": {
+        "es6": true,
+        "browser": true,
+        "node": true,
+        "jquery": true,
+        "mocha": true
+    },
+    "rules": {
+        "quotes": 0,
+        "max-len": [1, { "code": 120, "tabWidth": 4 }],
+        "no-console": 1,
+        "no-debugger": 1,
+        "no-var": 1,
+        "semi": [1, "always"],
+        "no-trailing-spaces": 1,
+        "object-curly-spacing": [1, "always"],
+        "eol-last": 0,
+        "no-unused-vars": [1, { "varsIgnorePattern": "React" }],
+        "no-underscore-dangle": 0,
+        "no-alert": 0,
+        "no-lone-blocks": 0,
+        "import/no-named-as-default": 0,
+        "indent": ["error", 4, { "SwitchCase": 1 }],
+        "react/jsx-uses-vars": 1,
+        "no-class-assign": 0,
+        "import/no-unresolved": "off"
+    },
+    "globals": {}
+}
