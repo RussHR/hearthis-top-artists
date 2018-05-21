@@ -73,25 +73,28 @@ export default class HearThisTopArtistsApp extends Component {
     }
 
     /**
-     * Sets an active artist and lists their tracks.
+     * Sets an active artist and lists their tracks. Prevents document.body from scrolling.
      *
      * @param {number|null} index - index of the artists in the state to set active
      * @returns {undefined}
      */
     setActiveArtist(activeArtistIndex) {
-        this.setState(() => ({ activeArtistIndex }));
+        this.setState(() => ({ activeArtistIndex }), () => {
+            document.body.classList.add('sm-overflow-hidden');
+        });
     }
 
     /**
-     * Sets an active artist and lists their tracks.
+     * Sets an active artist and lists their tracks. Allows document.body to scroll again.
      *
      * @param {number|null} index - index of the artists in the state to set active
      * @returns {undefined}
      */
     closeArtistDetails() {
-        this.setState(() => ({ activeArtistIndex: null }));
+        this.setState(() => ({ activeArtistIndex: null }), () => {
+            document.body.classList.remove('sm-overflow-hidden');
+        });
     }
-
 
     render() {
         const { activeArtistIndex } = this.state;
