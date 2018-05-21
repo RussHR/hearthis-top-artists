@@ -15,10 +15,12 @@ export default class HearThisTopArtistsApp extends Component {
         this.state = {
             artists: [],
             artistPage: 1,
-            fetchingMoreArtists: false
+            fetchingMoreArtists: false,
+            activeArtistIndex: null
         };
 
         this.fetchTopArtists = this.fetchTopArtists.bind(this);
+        this.setActiveArtist = this.setActiveArtist.bind(this);
     }
 
     /**
@@ -36,7 +38,7 @@ export default class HearThisTopArtistsApp extends Component {
     fetchTopArtists() {
         // we only want to fetching more artists if we aren't already fetching more
         if (!this.state.fetchingMoreArtists) {
-            this.setState({ fetchingMoreArtists: true }, () => {
+            this.setState(() => ({ fetchingMoreArtists: true }), () => {
                 request.get(`https://api-v2.hearthis.at/feed/?page=${this.state.artistPage}&count=20`)
                     .then(res => {
                         this.addArtistsToState(res.body);
@@ -68,9 +70,23 @@ export default class HearThisTopArtistsApp extends Component {
         });
     }
 
+    /**
+     * Sets an active artist and lists their tracks.
+     *
+     * @param {number|null} index - index of the artists in the state to set active
+     * @returns {undefined}
+     */
+    setActiveArtist(activeArtistIndex) {
+        this.setState(() => ({ activeArtistIndex }));
+    }
+
     render() {
         return (
-            <ArtistList artists={this.state.artists} onScrollNearBottom={this.fetchTopArtists} />
+            <ArtistList
+                artists={this.state.artists}
+                onScrollNearBottom={this.fetchTopArtists}
+                onClickArtist={this.setActiveArtist}
+            />
         );
     }
 }
