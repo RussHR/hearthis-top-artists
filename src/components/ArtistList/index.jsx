@@ -8,23 +8,43 @@ import './artist_list.scss';
 
 export default class ArtistList extends Component {
     /**
-     * Attach the scroll listener after component mounts.
+     * Creates an onScrollNearBottom handler, which is a throttle function.
      */
-    componentDidMount() {
-        window.addEventListener('scroll', this.onScrollNearBottom());
+    constructor(props) {
+        super(props);
+
+        this.checkIfMoreArtistsNeeded = this.checkIfMoreArtistsNeeded.bind(this);
+        this.onScrollNearBottom = this.generateOnScrollNearBottomHandler();
     }
 
     /**
-     * Returns a throttled function that calls onScrollNearBottom if ArtistList is scrolled near bottom.
+     * Attach the scroll listener after component mounts and checks if more artists must be fetched.
+     */
+    componentDidMount() {
+        window.addEventListener('scroll', this.onScrollNearBottom);
+        this.checkIfMoreArtistsNeeded();
+    }
+
+    /**
+     * Checks if we still need to load more artists despite an update.
+     * Generally needed only when the initial fetches return a few artists.
+     */
+    componentDidUpdate() {
+        this.checkIfMoreArtistsNeeded();
+    }
+
+    checkIfMoreArtistsNeeded() {
+        if (this.artistButtons && (this.artistButtons.getBoundingClientRect().bottom - 480) - window.innerHeight < 0) {
+            this.props.onScrollNearBottom();
+        }
+    }
+    /**
+     * Returns a throttled function that calls checkIfMoreArtistsNeeded every 100 ms.
      *
      * @returns {function}
      */
-    onScrollNearBottom() {
-        return throttle(() => {
-            if ((this.artistButtons.getBoundingClientRect().bottom - 480) - window.innerHeight < 0) {
-                this.props.onScrollNearBottom();
-            }
-        }, 100);
+    generateOnScrollNearBottomHandler() {
+        return throttle(this.checkIfMoreArtistsNeeded, 100);
     }
 
     render() {
