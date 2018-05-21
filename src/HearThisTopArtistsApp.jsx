@@ -11,7 +11,9 @@ export default class HearThisTopArtistsApp extends Component {
         super(props);
 
         this.state = {
-            artists: []
+            artists: [],
+            artistPage: 1,
+            fetchingMoreArtists: false
         };
     }
 
@@ -25,13 +27,26 @@ export default class HearThisTopArtistsApp extends Component {
      * @returns {undefined}
      */
     fetchTopArtists() {
-        request.get("https://api-v2.hearthis.at/feed/?page=1&count=20")
-            .then(res => {
-                this.addArtistsToState(res.body);
-            })
-            .catch(err => {
-                // implement error catching here
+        // we only want to fetching more artists if we aren't already fetching more
+        if (!this.state.fetchingMoreArtists) {
+            this.setState({ fetchingMoreArtists: true }, () => {
+                request.get(`https://api-v2.hearthis.at/feed/?page=${this.state.artistPage}&count=20`)
+                    .then(res => {
+                        this.addArtistsToState(res.body);
+                    })
+                    .catch(err => {
+                        // implement error catching here
+                    })
+                    .finally(() => {
+                        this.setState(({ artistPage }) => {
+                            return {
+                                artistPage: artistPage + 1,
+                                fetchingMoreArtists: false
+                            };
+                        });
+                    });
             });
+        }
     }
 
     /**
@@ -47,6 +62,6 @@ export default class HearThisTopArtistsApp extends Component {
     }
 
     render() {
-        return <div>HearThisTopArtistsApp</div>;
+        return (<div>HearThisTopArtistsApp</div>);
     }
 }
