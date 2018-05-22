@@ -4,7 +4,7 @@ import request from 'superagent';
 import ArtistList from './components/ArtistList';
 import ArtistPage from './components/ArtistPage';
 
-import { useTrackstoAddArtists } from './stateUpdaters';
+import { useTrackstoAddArtists, addSongsToArtist } from './stateUpdaters';
 
 /**
  * Main app. All hearthis API logic is here.
@@ -70,13 +70,16 @@ export default class HearThisTopArtistsApp extends Component {
     fetchMoreSongsByArtist() {
         // we only want to fetching more songs if we aren't already fetching more, and if there's an activeArtistIndex
         const { fetchingMoreSongsByArtist, activeArtistIndex, artists } = this.state;
-        if (!fetchingMoreSongsByArtist && activeArtistIndex !== null) {
+        const artist = artists[activeArtistIndex];
+
+        if (!fetchingMoreSongsByArtist && activeArtistIndex !== null && !artist.allSongsFetched) {
             this.setState(() => ({ fetchingMoreSongsByArtist: true }), () => {
-                const artist = artists[activeArtistIndex];
+
                 const page = parseInt((artist.songs.length / 20) + 1, 10);
+
                 request.get(`${artist.uri}?type=tracks&page=${page}&count=20`)
                     .then(res => {
-                        this.addArtistsToState(res.body);
+                        this.addSongsToArtist(res.body);
                     })
                     .catch(() => {
                         // implement error catching here
@@ -101,6 +104,18 @@ export default class HearThisTopArtistsApp extends Component {
     addArtistsToState(tracks) {
         this.setState(({ artists }) => {
             return { artists: useTrackstoAddArtists(artists, tracks) };
+        });
+    }
+
+    /**
+     * Updates songs for an artist
+     *
+     * @param {array} songs - objects with data for the artist's songs
+     * @returns {undefined}
+     */
+    addSongsToArtist(songs) {
+        this.setState(prevState => {
+            return { artists: addSongsToArtist(prevState.artists, prevState.activeArtistIndex, songs) };
         });
     }
 

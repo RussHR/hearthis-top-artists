@@ -37,3 +37,33 @@ export function useTrackstoAddArtists(prevArtists, tracks) {
 
     return artists;
 }
+
+/**
+ * Adds new songs to an artist.
+ *
+ * @param {array} prevArtists - all the artists in the previous state
+ * @param {number} artistIndex - index of artist in prevArtists to add songs to
+ * @param {array} songs - new songs to add
+ * @returns {array} an array including the updated artist
+ */
+export function addSongsToArtist(prevArtists, artistIndex, songs) {
+    const artists = cloneDeep(prevArtists);
+
+    songs.forEach(song => {
+        if (!song) {
+            return;
+        }
+
+        // add the song to the artist only if it isn't there already
+        const { songs } = artists[artistIndex];
+        if (findIndex(songs, ['id', song.id]) === -1) {
+            songs.push(song);
+        }
+    });
+
+    if (songs.length < 20) {
+        artists[artistIndex]['allSongsFetched'] = true;
+    }
+
+    return artists;
+}
