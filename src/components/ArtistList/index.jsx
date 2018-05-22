@@ -6,6 +6,9 @@ import ArtistButton from '../ArtistButton';
 
 import './artist_list.scss';
 
+/**
+ * List of artists on the main page.
+ */
 export default class ArtistList extends Component {
     /**
      * Creates an onScrollNearBottom handler, which is a throttled function.

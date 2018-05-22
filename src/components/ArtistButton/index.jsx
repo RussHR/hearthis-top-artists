@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 import './artist_button.scss';
 
+/**
+ * List item button that contains basic artist info. Will open their page on click.
+ */
 export default function ArtistButton({ artist, onClick }) {
     return (
         <li>

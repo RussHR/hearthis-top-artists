@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 import './artist_song.scss';
 
+/**
+ * Song info and button for playing in here.
+ */
 export default function ArtistSong({ song, onSelectSong }) {
     return (
         <li className="artistSong">

@@ -5,6 +5,9 @@ import ArtistSong from '../ArtistSong';
 
 import './artist_page.scss';
 
+/**
+ * Lists the songs of an artist.
+ */
 export default class ArtistPage extends Component {
     /**
      * Creates an onScrollNearBottom handler, which is a throttled function.
