@@ -61,7 +61,7 @@ export default class ArtistPage extends Component {
     }
 
     render() {
-        const { artist, onClose } = this.props;
+        const { artist, onClose, onSelectSong } = this.props;
 
         return (
             <section className="artistPage">
@@ -69,7 +69,13 @@ export default class ArtistPage extends Component {
                 <section className="artistPage__detailsAndSongs" ref={c => this.artistPageEl = c}>
                     <div></div>
                     <ul className="artistPage__songList" ref={c => this.artistSongsEl = c}>
-                        {artist.songs.map(song => <ArtistSong song={song} key={song.id} />)}
+                        {artist.songs.map(song => (
+                            <ArtistSong
+                                song={song}
+                                key={song.id}
+                                onSelectSong={onSelectSong}
+                            />
+                        ))}
                     </ul>
                 </section>
             </section>
@@ -91,4 +97,5 @@ ArtistPage.propTypes = {
     }).isRequired,
     onClose: PropTypes.func.isRequired,
     onScrollNearBottom: PropTypes.func.isRequired,
+    onSelectSong: PropTypes.func.isRequired
 };

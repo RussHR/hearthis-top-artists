@@ -18,12 +18,14 @@ export default class HearThisTopArtistsApp extends Component {
             artistPage: 1,
             fetchingMoreArtists: false,
             fetchingMoreSongsByArtist: false,
-            activeArtistIndex: null
+            activeArtistIndex: null,
+            activeSong: null
         };
 
         this.fetchTopArtists = this.fetchTopArtists.bind(this);
         this.fetchMoreSongsByArtist = this.fetchMoreSongsByArtist.bind(this);
         this.setActiveArtist = this.setActiveArtist.bind(this);
+        this.setActiveSong = this.setActiveSong.bind(this);
         this.closeArtistDetails = this.closeArtistDetails.bind(this);
     }
 
@@ -85,10 +87,8 @@ export default class HearThisTopArtistsApp extends Component {
                         // implement error catching here
                     })
                     .finally(() => {
-                        this.setState(({ artistPage }) => {
-                            return {
-                                fetchingMoreSongsByArtist: false
-                            };
+                        this.setState(() => {
+                            return { fetchingMoreSongsByArtist: false };
                         });
                     });
             });
@@ -143,6 +143,16 @@ export default class HearThisTopArtistsApp extends Component {
         });
     }
 
+    /**
+     * Sets an active song to start playing in the music player.
+     *
+     * @param {object} song - includes stream_url and other information
+     * @returns {undefined}
+     */
+    setActiveSong(activeSong) {
+        this.setState(() => ({ activeSong }));
+    }
+
     render() {
         const { activeArtistIndex } = this.state;
 
@@ -158,6 +168,7 @@ export default class HearThisTopArtistsApp extends Component {
                         artist={this.state.artists[activeArtistIndex]}
                         onClose={this.closeArtistDetails}
                         onScrollNearBottom={this.fetchMoreSongsByArtist}
+                        onSelectSong={this.setActiveSong}
                     />
                 }
             </Fragment>
