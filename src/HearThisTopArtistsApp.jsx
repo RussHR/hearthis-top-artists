@@ -3,6 +3,7 @@ import request from 'superagent';
 
 import ArtistList from './components/ArtistList';
 import ArtistPage from './components/ArtistPage';
+import MusicPlayer from './components/MusicPlayer';
 
 import { useTrackstoAddArtists, addSongsToArtist } from './stateUpdaters';
 
@@ -171,6 +172,7 @@ export default class HearThisTopArtistsApp extends Component {
                         onSelectSong={this.setActiveSong}
                     />
                 }
+                <MusicPlayer />
             </Fragment>
         );
     }

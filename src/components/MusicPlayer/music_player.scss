@@ -1,0 +1,10 @@
+@import '../../style/variables';
+
+.musicPlayer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: $musicPlayer_height;
+    background: white;
+    border-top: 1px solid black;
+}
