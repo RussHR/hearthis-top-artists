@@ -7,10 +7,18 @@ import './music_player.scss';
  * Song info and button for playing in here.
  */
 export default class MusicPlayer extends PureComponent {
+    /**
+     * Binds this.audio, and attaches a listener to update duration bar.
+     */
     constructor(props) {
         super(props);
 
         this.audio = new Audio();
+        this.audio.addEventListener('timeupdate', () => {
+            const scaleX = this.audio.currentTime / this.audio.duration;
+            this.durationMarkerEl.style.transform = `scale3d(${scaleX}, 1, 1)`;
+        });
+
         this.togglePause = this.togglePause.bind(this);
         this.replaySong = this.replaySong.bind(this);
     }
@@ -59,13 +67,16 @@ export default class MusicPlayer extends PureComponent {
                 <button onClick={this.replaySong}>
                     Replay Song
                 </button>
+                <div className="musicPlayer__durationBar">
+                    <div className="musicPlayer__durationMarker" ref={c => this.durationMarkerEl = c} />
+                </div>
             </section>
         );
     }
 }
 
 MusicPlayer.propTypes = {
-    // song is only undefined when the app loads
+    // song is only undefined when the app first loads
     song: PropTypes.shape({
         artwork_url: PropTypes.string,
         stream_url: PropTypes.string,

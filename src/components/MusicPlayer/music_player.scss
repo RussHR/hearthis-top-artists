@@ -8,3 +8,17 @@
     background: white;
     border-top: 1px solid black;
 }
+.musicPlayer__durationBar {
+    height: $musicPlayer__durationBar_height;
+    width: 80%;
+    position: relative;
+    background-color: black;
+    overflow: hidden;
+}
+.musicPlayer__durationMarker {
+    height: 100%;
+    width: 200%;
+    position: absolute;
+    right: 0%;
+    background-color: #b4d455;
+}
