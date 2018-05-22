@@ -3,7 +3,7 @@ import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 
-function noop () {
+function noop() {
     return null;
 }
 require.extensions['.scss'] = noop;

@@ -20,7 +20,7 @@ export default class HearThisTopArtistsApp extends Component {
             fetchingMoreArtists: false,
             fetchingMoreSongsByArtist: false,
             activeArtistIndex: null,
-            activeSong: null
+            activeSong: undefined // it is only undefined at the start
         };
 
         this.fetchTopArtists = this.fetchTopArtists.bind(this);
@@ -155,7 +155,7 @@ export default class HearThisTopArtistsApp extends Component {
     }
 
     render() {
-        const { activeArtistIndex } = this.state;
+        const { activeArtistIndex, activeSong } = this.state;
 
         return (
             <Fragment>
@@ -172,7 +172,7 @@ export default class HearThisTopArtistsApp extends Component {
                         onSelectSong={this.setActiveSong}
                     />
                 }
-                <MusicPlayer />
+                <MusicPlayer song={activeSong} />
             </Fragment>
         );
     }
