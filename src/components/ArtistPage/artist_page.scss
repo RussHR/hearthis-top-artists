@@ -1,3 +1,5 @@
+@import '../../style/variables';
+
 .artistPage {
     height: 100%;
     width: 100%;
@@ -8,7 +10,7 @@
 .artistPage__overlay {
     height: 100%;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 .artistPage__detailsAndSongs {
     position: absolute;
@@ -16,11 +18,12 @@
     width: calc(100% - 48px);
     top: 0;
     right: 0;
-    background-color: white;
+    background: rgb(35, 84, 133);
+    background: linear-gradient(0deg, rgb(190, 90, 19) 0%, rgb(210, 70, 20) 50%, rgb(226, 43, 40) 100%);
     overflow: scroll;
 }
 .artistPage__songList {
-    padding: 0;
+    padding: $base-unit;
     margin: 0;
     list-style: none;
 }

@@ -1,7 +1,14 @@
+@import '../../style/variables';
+
 .artistSong {
-    height: 160px;
+    min-height: $artistSong_height;
+    margin: $base-unit 0;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 .artistSong__artwork {
     height: 100px;
     width: 100px;
+}
+.artistSong_playButton {
+    color: white;
 }

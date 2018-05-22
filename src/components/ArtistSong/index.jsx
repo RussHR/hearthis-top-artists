@@ -10,8 +10,8 @@ export default function ArtistSong({ song, onSelectSong }) {
     return (
         <li className="artistSong">
             <img src={song.artwork_url} className="artistSong__artwork" />
-            <button onClick={() => onSelectSong(song)}>
-                Play
+            <button className="artistSong_playButton" onClick={() => onSelectSong(song)}>
+                &#9654; Play
             </button>
         </li>
     );

@@ -1,10 +1,17 @@
 @import './variables';
 
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 html {
     font-size: $base-unit;
 }
 body {
-    background-color: aliceblue;
+    background: rgb(35, 84, 133);
+    background: linear-gradient(0deg, rgb(35, 84, 133) 0%, rgb(41, 97, 127) 50%, rgb(60, 128, 124) 100%);
+    color: white;
+    font-family: 'Open Sans', sans-serif;
 }
 .sm-overflow-hidden {
     overflow: hidden;
