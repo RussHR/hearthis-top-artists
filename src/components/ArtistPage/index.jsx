@@ -64,7 +64,7 @@ export default class ArtistPage extends Component {
     }
 
     render() {
-        const { artist, onClose, onSelectSong } = this.props;
+        const { artist, onClose, onSelectSong, fetchingMoreSongsByArtist } = this.props;
 
         return (
             <section className="artistPage">
@@ -87,6 +87,11 @@ export default class ArtistPage extends Component {
                         {artist.allSongsFetched && (
                             <li className="artistPage__listAddition">
                                 These are all of the artist’s tracks!
+                            </li>
+                        )}
+                        {fetchingMoreSongsByArtist && (
+                            <li className="artistPage__listAddition">
+                                Loading more tracks...
                             </li>
                         )}
                     </ul>
@@ -112,5 +117,7 @@ ArtistPage.propTypes = {
     }).isRequired,
     onClose: PropTypes.func.isRequired,
     onScrollNearBottom: PropTypes.func.isRequired,
-    onSelectSong: PropTypes.func.isRequired
+    onSelectSong: PropTypes.func.isRequired,
+    /* True if the app is currently fetching more songs for the user */
+    fetchingMoreSongsByArtist: PropTypes.bool.isRequired
 };

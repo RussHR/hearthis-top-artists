@@ -15,9 +15,11 @@ describe('<ArtistSong />', () => {
             title: 'Mock Song',
             genre: 'Pop',
             duration: '103',
-            permalink_url: 'https://example.com'
+            permalink_url: 'https://example.com',
+            thumb: 'https://thumbexample.com'
         },
-        onSelectSong: fake()
+        onSelectSong: fake(),
+        artist: 'Mock Artist'
     };
 
     it('should render without any issues', () => {
@@ -35,9 +37,9 @@ describe('<ArtistSong />', () => {
     it('should render all appropriate song information', () => {
         const wrapper = render(<ArtistSong {...mockProps} />);
         const html = wrapper.html();
-        expect(html).to.contain(mockProps.title);
-        expect(html).to.contain(mockProps.genre);
+        expect(html).to.contain(mockProps.song.title);
+        expect(html).to.contain(mockProps.song.genre);
         expect(html).to.contain('1:43');
-        expect(html).to.contain(mockProps.permalink_url);
+        expect(html).to.contain(mockProps.song.permalink_url);
     });
 });

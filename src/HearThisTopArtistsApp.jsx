@@ -155,7 +155,7 @@ export default class HearThisTopArtistsApp extends Component {
     }
 
     render() {
-        const { activeArtistIndex, activeSong, fetchingMoreArtists } = this.state;
+        const { activeArtistIndex, activeSong, fetchingMoreArtists, fetchingMoreSongsByArtist } = this.state;
 
         return (
             <Fragment>
@@ -171,6 +171,7 @@ export default class HearThisTopArtistsApp extends Component {
                         onClose={this.closeArtistDetails}
                         onScrollNearBottom={this.fetchMoreSongsByArtist}
                         onSelectSong={this.setActiveSong}
+                        fetchingMoreSongsByArtist={fetchingMoreSongsByArtist}
                     />
                 }
                 <MusicPlayer song={activeSong} />
