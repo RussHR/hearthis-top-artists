@@ -82,9 +82,13 @@ export default class ArtistList extends Component {
 }
 
 ArtistList.propTypes = {
+    /* List of artist objects */
     artists: PropTypes.arrayOf(PropTypes.shape({
+        /* unique hearthis.at id of artist  */
         id: PropTypes.string.isRequired
     })).isRequired,
+    /* Function that is called when the user scrolls near the bottom of the artist list  */
     onScrollNearBottom: PropTypes.func.isRequired,
+    /* Function that is called when the user clicks an artist button (opens the artist's page)  */
     onClickArtist: PropTypes.func.isRequired
 };

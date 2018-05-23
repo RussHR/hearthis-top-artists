@@ -51,10 +51,18 @@ const getThreeMostRecentGenresFromSongs = (songs) => {
 };
 
 ArtistButton.propTypes = {
+    /* Artist that the button is being rendered for */
     artist: PropTypes.shape({
-        id: PropTypes.string.isRequired,
+        /* Image url for the artist's avatar */
         avatar_url: PropTypes.string.isRequired,
-        username: PropTypes.string.isRequired
+        /* Artist's username on hearthis.at */
+        username: PropTypes.string.isRequired,
+        /* Artist's songs/tracks */
+        songs: PropTypes.arrayOf(PropTypes.shape({
+            /* Genre of a given song */
+            genre: PropTypes.string.isRequired
+        })).isRequired
     }).isRequired,
+    /* Called when the button is clicked (opens the artist's page) */
     onClick: PropTypes.func.isRequired
 };
