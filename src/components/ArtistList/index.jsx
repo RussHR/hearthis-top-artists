@@ -62,7 +62,11 @@ export default class ArtistList extends Component {
 
         return (
             <main>
-                <header>hearthis.at Top Artists</header>
+                <header>
+                    <h1 className="artistList__appTitle">
+                        hearthis.at Top Artists
+                    </h1>
+                </header>
                 <ul className="artistList__artistButtons" ref={c => { this.artistListEl = c; }}>
                     {artists.map((artist, index) => (
                         <ArtistButton

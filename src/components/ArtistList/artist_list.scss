@@ -1,5 +1,10 @@
 @import '../../style/variables';
 
+.artistList__appTitle {
+    margin: ($base-unit * 2) ($base-unit * 2) 0;
+    text-align: center;
+}
+
 .artistList__artistButtons {
     padding: ($base-unit * 2) ($base-unit * 2) $musicPlayer_height;
     margin: 0;
