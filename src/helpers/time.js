@@ -7,7 +7,12 @@
 
 export function secondsToMinutesWithSeconds(seconds) {
     const secondsInt = parseInt(seconds, 10);
-    const minutes = Math.floor(secondsInt / 60);
+    let minutes = Math.floor(secondsInt / 60);
+    if (minutes >= 60) {
+        minutes = secondsToMinutesWithSeconds(minutes);
+    }
+
     const leftoverSeconds = secondsInt % 60 < 10 ? `0${secondsInt % 60}` : secondsInt % 60;
+
     return `${minutes}:${leftoverSeconds}`;
 }

@@ -19,5 +19,9 @@ describe('Time helpers', () => {
         it('can convert a value that requires a 0 in the tens digit of seconds', () => {
             expect(secondsToMinutesWithSeconds('187')).to.equal('3:07');
         });
+
+        it('can convert a value that has a duration over two hours', () => {
+            expect(secondsToMinutesWithSeconds('10800')).to.equal('3:00:00');
+        });
     });
 });

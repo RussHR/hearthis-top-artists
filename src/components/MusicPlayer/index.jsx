@@ -1,5 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { get } from 'lodash';
+
+import { secondsToMinutesWithSeconds } from '../../helpers';
 
 import './music_player.scss';
 
@@ -25,8 +28,12 @@ export default class MusicPlayer extends PureComponent {
         this.durationMarkerEl.style.transform = `scale3d(0, 1, 1)`;
 
         this.audio.addEventListener('timeupdate', () => {
+            // shift progress bar
             const scaleX = this.audio.currentTime / this.audio.duration;
             this.durationMarkerEl.style.transform = `scale3d(${scaleX}, 1, 1)`;
+
+            // update progress against duration
+            this.progressEl.innerText = secondsToMinutesWithSeconds(this.audio.currentTime);
         });
 
     }
@@ -69,6 +76,8 @@ export default class MusicPlayer extends PureComponent {
 
     render() {
         const { song } = this.props;
+        const artistName = get(song, ['user', 'username']);
+        const duration = song.duration ? secondsToMinutesWithSeconds(song.duration) : '0:00';
 
         return (
             <section className="musicPlayer">
@@ -85,6 +94,12 @@ export default class MusicPlayer extends PureComponent {
                 <div className="musicPlayer__songDetailsAndProgress">
                     <div className="musicPlayer__songDetails">
                         {song.title}
+                        <span className="musicPlayer__artistNameAndDuration">
+                            <br />
+                            {artistName}
+                            <br />
+                            <span ref={c => this.progressEl = c}>0:00</span> / {duration}
+                        </span>
                     </div>
 
                     <div className="musicPlayer__durationBar">
@@ -112,7 +127,14 @@ MusicPlayer.propTypes = {
         /* Title of the song */
         title: PropTypes.string.isRequired,
         /* Stream url of the song */
-        stream_url: PropTypes.string
+        stream_url: PropTypes.string,
+        /* Duration of the song in seconds */
+        duration: PropTypes.string,
+        /* Artist of the song */
+        user: PropTypes.shape({
+            /* Username of the artist of the song */
+            username: PropTypes.string
+        })
     })
 };
 

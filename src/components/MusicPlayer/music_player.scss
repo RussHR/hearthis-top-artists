@@ -26,7 +26,20 @@
 .musicPlayer__songDetails {
     height: calc(100% - #{$musicPlayer__durationBar_height});
     @include break-word();
+    font-size: 1rem;
     overflow: scroll;
+
+    @media only screen and (min-width: $medium-screen-min-width) {
+        font-size: 1.5rem;
+    }
+}
+.musicPlayer__artistNameAndDuration {
+    display: none;
+
+    @media only screen and (min-width: $medium-screen-min-width) {
+        display: inline;
+        font-size: 1rem;
+    }
 }
 .musicPlayer__durationBar {
     height: $musicPlayer__durationBar_height;
