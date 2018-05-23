@@ -71,6 +71,7 @@ export default class ArtistPage extends Component {
                 <div className="artistPage__overlay" onClick={onClose} />
                 <section className="artistPage__detailsAndSongs" ref={c => this.artistPageEl = c}>
                     <div className="artistPage__details">
+                        <button className="artistPage__close" aria-label="close" onClick={onClose}>Close &#215;</button>
                         <img className="artistPage__avatar" src={artist.avatar_url} />
                         <h2 className="artistPage__username">{artist.username}</h2>
                         <a href={artist.permalink_url} target="_blank">{artist.permalink_url}</a>

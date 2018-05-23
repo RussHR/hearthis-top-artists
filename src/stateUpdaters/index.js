@@ -47,6 +47,11 @@ export function useTrackstoAddArtists(prevArtists, tracks) {
  * @returns {array} an array including the updated artist
  */
 export function addSongsToArtist(prevArtists, artistIndex, songs) {
+    // prevent error where prevArtists[artistIndex] does not exist
+    if (!prevArtists[artistIndex]) {
+        return;
+    }
+
     const artists = cloneDeep(prevArtists);
 
     songs.forEach(song => {

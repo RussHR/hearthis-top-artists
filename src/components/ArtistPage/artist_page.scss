@@ -12,6 +12,14 @@
     width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
 }
+.artistPage__close {
+    float: right;
+    height: $base-unit * 2;
+    margin-bottom: $base-unit;
+    border-radius: $standard-border-radius;
+    background: none;
+    color: white;
+}
 .artistPage__detailsAndSongs {
     position: absolute;
     height: 100%;
