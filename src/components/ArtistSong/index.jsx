@@ -17,7 +17,7 @@ export default function ArtistSong({ song, onSelectSong, artist }) {
                     <img src={song.thumb} className="artistSong__artwork" alt={altText} />
                 </span>
                 <button className="artistSong_playButton" onClick={() => onSelectSong(song)}>
-                    &#9654; Play
+                    Play
                 </button>
             </span>
             <span>
