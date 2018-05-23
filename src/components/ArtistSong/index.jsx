@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { secondsToMinutesWithSeconds } from '../../helpers';
+
 import './artist_song.scss';
 
 /**
@@ -20,9 +22,9 @@ export default function ArtistSong({ song, onSelectSong, artist }) {
             </span>
             <span>
                 <h3 className="artistSong_title">{song.title}</h3>
-                {song.genre}
+                {secondsToMinutesWithSeconds(song.duration)}
                 <br />
-                {song.duration}
+                {song.genre}
                 <br />
                 <a
                     href={song.permalink_url}

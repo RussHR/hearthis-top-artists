@@ -37,7 +37,7 @@ describe('<ArtistSong />', () => {
         const html = wrapper.html();
         expect(html).to.contain(mockProps.title);
         expect(html).to.contain(mockProps.genre);
-        expect(html).to.contain(mockProps.duration);
+        expect(html).to.contain('1:43');
         expect(html).to.contain(mockProps.permalink_url);
     });
 });
