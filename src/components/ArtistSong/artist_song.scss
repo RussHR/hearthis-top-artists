@@ -28,12 +28,11 @@
     @include artwork($artistSong__artwork_height);
 }
 .artistSong_title {
+    @include break-word();
     margin: 0 0 ($base-unit * 0.5);
 }
 .artistSong_permalinkUrl {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    word-break: break-word;
+    @include break-word();
     color: white;
 }
 .artistSong_playButton {

@@ -22,8 +22,28 @@
     background: linear-gradient(0deg, rgb(190, 90, 19) 0%, rgb(210, 70, 20) 50%, rgb(226, 43, 40) 100%);
     overflow: scroll;
 }
+.artistPage__details {
+    padding: $base-unit;
+    text-align: center;
+    > a {
+        color: white;
+        @include break-word();
+    }
+}
+.artistPage__avatar {
+    border-radius: $standard-border-radius;
+    max-width: 100%;
+    margin-bottom: $base-unit;
+}
+.artistPage__username {
+    margin-top: 0;
+    @include break-word();
+}
 .artistPage__songList {
     padding: $base-unit $base-unit $musicPlayer_height;
     margin: 0;
     list-style: none;
+}
+.artistPage__listAddition {
+    margin-bottom: $base-unit;
 }

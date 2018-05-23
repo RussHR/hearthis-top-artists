@@ -25,6 +25,18 @@ describe('<ArtistPage />', () => {
         render(<ArtistPage {...mockProps} />);
     });
 
+    it('should render the artist username and permalink_url', () => {
+        const html = render(<ArtistPage {...mockProps} />).html();
+        expect(html).to.contain(mockProps.artist.username);
+        expect(html).to.contain(mockProps.artist.permalink_url);
+    });
+
+    it('should render the artist avatar', () => {
+        const wrapper = render(<ArtistPage {...mockProps} />);
+        expect(wrapper.find('img').attr('src')).to.equal(mockProps.artist.avatar_url);
+    });
+
+
     // requires JSDOM config
     xit('should call its onClose prop when the overlay is clicked', () => {
         const wrapper = shallow(<ArtistPage {...mockProps} />);

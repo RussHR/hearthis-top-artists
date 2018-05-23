@@ -70,7 +70,11 @@ export default class ArtistPage extends Component {
             <section className="artistPage">
                 <div className="artistPage__overlay" onClick={onClose} />
                 <section className="artistPage__detailsAndSongs" ref={c => this.artistPageEl = c}>
-                    <div></div>
+                    <div className="artistPage__details">
+                        <img className="artistPage__avatar" src={artist.avatar_url} />
+                        <h2 className="artistPage__username">{artist.username}</h2>
+                        <a href={artist.permalink_url} target="_blank">{artist.permalink_url}</a>
+                    </div>
                     <ul className="artistPage__songList" ref={c => this.artistSongsEl = c}>
                         {artist.songs.map(song => (
                             <ArtistSong
@@ -80,6 +84,11 @@ export default class ArtistPage extends Component {
                                 artist={artist.username}
                             />
                         ))}
+                        {artist.allSongsFetched && (
+                            <li className="artistPage__listAddition">
+                                These are all of the artist’s tracks!
+                            </li>
+                        )}
                     </ul>
                 </section>
             </section>
@@ -90,7 +99,9 @@ export default class ArtistPage extends Component {
 ArtistPage.propTypes = {
     artist: PropTypes.shape({
         id: PropTypes.string.isRequired,
+        /* Image url for artist's avatar */
         avatar_url: PropTypes.string.isRequired,
+        /* Permalink url for artist's page on hearthis.at */
         permalink_url: PropTypes.string.isRequired,
         uri: PropTypes.string.isRequired,
         username: PropTypes.string.isRequired,

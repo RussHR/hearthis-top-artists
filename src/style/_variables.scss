@@ -27,3 +27,9 @@ $musicPlayer__durationBar_height: $base-unit * 0.5;
     max-width: $size;
     border-radius: $standard-border-radius;
 }
+
+@mixin break-word() {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
