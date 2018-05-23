@@ -155,7 +155,7 @@ export default class HearThisTopArtistsApp extends Component {
     }
 
     render() {
-        const { activeArtistIndex, activeSong } = this.state;
+        const { activeArtistIndex, activeSong, fetchingMoreArtists } = this.state;
 
         return (
             <Fragment>
@@ -163,6 +163,7 @@ export default class HearThisTopArtistsApp extends Component {
                     artists={this.state.artists}
                     onScrollNearBottom={this.fetchTopArtists}
                     onClickArtist={this.setActiveArtist}
+                    fetchingMoreArtists={fetchingMoreArtists}
                 />
                 {activeArtistIndex !== null &&
                     <ArtistPage

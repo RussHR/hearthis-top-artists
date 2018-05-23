@@ -58,7 +58,7 @@ export default class ArtistList extends Component {
     }
 
     render() {
-        const { artists, onClickArtist } = this.props;
+        const { artists, onClickArtist, fetchingMoreArtists } = this.props;
 
         return (
             <main>
@@ -75,6 +75,11 @@ export default class ArtistList extends Component {
                             onClick={() => onClickArtist(index)}
                         />
                     ))}
+                    {fetchingMoreArtists && (
+                        <li className="artistList__listAddition">
+                            Loading more artists...
+                        </li>
+                    )}
                 </ul>
             </main>
         );
@@ -90,5 +95,7 @@ ArtistList.propTypes = {
     /* Function that is called when the user scrolls near the bottom of the artist list  */
     onScrollNearBottom: PropTypes.func.isRequired,
     /* Function that is called when the user clicks an artist button (opens the artist's page)  */
-    onClickArtist: PropTypes.func.isRequired
+    onClickArtist: PropTypes.func.isRequired,
+    /* True if more artists are currently being fetched */
+    fetchingMoreArtists: PropTypes.bool.isRequired
 };
