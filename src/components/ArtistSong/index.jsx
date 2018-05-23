@@ -6,20 +6,48 @@ import './artist_song.scss';
 /**
  * Song info and button for playing in here.
  */
-export default function ArtistSong({ song, onSelectSong }) {
+export default function ArtistSong({ song, onSelectSong, artist }) {
+    const altText = `Thumbnail image for the track ${song.title} by the artist ${artist}.`;
     return (
         <li className="artistSong">
-            <img src={song.artwork_url} className="artistSong__artwork" />
-            <button className="artistSong_playButton" onClick={() => onSelectSong(song)}>
-                &#9654; Play
-            </button>
+            <span className="artistSong__artworkAndPlayButtonWrapper">
+                <span className="artistSong__artworkWrapper">
+                    <img src={song.thumb} className="artistSong__artwork" alt={altText} />
+                </span>
+                <button className="artistSong_playButton" onClick={() => onSelectSong(song)}>
+                    &#9654; Play
+                </button>
+            </span>
+            <span>
+                <h3 className="artistSong_title">{song.title}</h3>
+                {song.genre}
+                <br />
+                {song.duration}
+                <br />
+                <a
+                    href={song.permalink_url}
+                    target="_blank"
+                    className="artistSong_permalinkUrl"
+                >
+                    {song.permalink_url}
+                </a>
+            </span>
         </li>
     );
 }
 
 ArtistSong.propTypes = {
+    /* Current artist's song */
     song: PropTypes.shape({
-        artwork_url: PropTypes.string.isRequired
+        /* Image url for the song's thumbnail */
+        thumb: PropTypes.string.isRequired,
+        /* Title of the song */
+        title: PropTypes.string.isRequired,
+        /* Genre of the song */
+        genre: PropTypes.string.isRequired
     }),
-    onSelectSong: PropTypes.func.isRequired
+    /* Function called when the play button is clicked (starts playing the song) */
+    onSelectSong: PropTypes.func.isRequired,
+    /* Username of the artist of the song, used for the alt text */
+    artist: PropTypes.string.isRequired
 };

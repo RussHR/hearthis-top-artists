@@ -1,14 +1,46 @@
 @import '../../style/variables';
 
 .artistSong {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     min-height: $artistSong_height;
+    padding: $base-unit;
     margin: $base-unit 0;
+    border-radius: $standard-border-radius;
     background-color: $opaque-background-color;
 }
+.artistSong__artworkAndPlayButtonWrapper {
+    width: $artistSong__artwork_height;
+    flex-basis: $artistSong__artwork_height;
+    margin-right: $base-unit;
+    text-align: center;
+}
+.artistSong__artworkWrapper {
+    height: $artistSong__artwork_height;
+    width: $artistSong__artwork_height;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    margin-bottom: $base-unit;
+}
 .artistSong__artwork {
-    height: 100px;
-    width: 100px;
+    @include artwork($artistSong__artwork_height);
+}
+.artistSong_title {
+    margin: 0 0 ($base-unit * 0.5);
+}
+.artistSong_permalinkUrl {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    color: white;
 }
 .artistSong_playButton {
+    height: $artistSong_playButton_height;
+    width: $artistSong_playButton_height;
+    border: 1px solid white;
+    border-radius: $standard-border-radius;
+    background: none;
     color: white;
 }

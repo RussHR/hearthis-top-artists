@@ -17,17 +17,10 @@
     cursor: pointer;
 }
 .artistButton__avatarWrapper {
-    height: $artistButton__avatar_height;
-    flex-basis: $artistButton__avatar_height;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    margin-right: $base-unit;
+    @include artwork-wrapper($artistButton__avatar_height);
 }
 .artistButton__avatar {
-    max-height: $artistButton__avatar_height;
-    max-width: $artistButton__avatar_height;
-    border-radius: $standard-border-radius;
+    @include artwork($artistButton__avatar_height);
 }
 .artistButton__username {
     margin: 0 0 ($base-unit * 0.5);

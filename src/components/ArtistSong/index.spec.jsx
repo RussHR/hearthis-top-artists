@@ -1,6 +1,6 @@
 /* eslint-disable no-undef, quotes */
 import { expect } from 'chai';
-import { shallow } from 'enzyme';
+import { shallow, render } from 'enzyme';
 import React from 'react';
 import { fake } from 'sinon';
 import ArtistSong from './index';
@@ -12,7 +12,10 @@ describe('<ArtistSong />', () => {
             id: '7263111',
             description: 'Show info: datatransmission.co/radio/podc...-rosario-galati\n@rosariogalati\nListen',
             stream_url: 'https://hearthis.at/djandrycristian/daynight-series-episode-036-feature-rosario-galati/',
-            title: 'Mock Song'
+            title: 'Mock Song',
+            genre: 'Pop',
+            duration: '103',
+            permalink_url: 'https://example.com'
         },
         onSelectSong: fake()
     };
@@ -27,5 +30,14 @@ describe('<ArtistSong />', () => {
         wrapper.find('button').simulate('click');
         expect(mockProps.onSelectSong.calledOnce).to.be.true;
         expect(mockProps.onSelectSong.calledWith(mockProps.song)).to.be.true;
+    });
+
+    it('should render all appropriate song information', () => {
+        const wrapper = render(<ArtistSong {...mockProps} />);
+        const html = wrapper.html();
+        expect(html).to.contain(mockProps.title);
+        expect(html).to.contain(mockProps.genre);
+        expect(html).to.contain(mockProps.duration);
+        expect(html).to.contain(mockProps.permalink_url);
     });
 });

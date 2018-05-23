@@ -8,5 +8,22 @@ $opaque-background-color: rgba(0, 0, 0, 0.5);
 $artistList__artistButton_height: $base-unit * 7;
 $artistButton__avatar_height: $artistList__artistButton_height - ($base-unit);
 $artistSong_height: $base-unit * 8;
+$artistSong_playButton_height: $base-unit * 3;
+$artistSong__artwork_height: $base-unit * 6;
 $musicPlayer_height: $base-unit * 6;
 $musicPlayer__durationBar_height: $base-unit * 0.5;
+
+@mixin artwork-wrapper($size) {
+    height: $size;
+    flex-basis: $size;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    margin-right: $base-unit;
+}
+
+@mixin artwork($size) {
+    max-height: $size;
+    max-width: $size;
+    border-radius: $standard-border-radius;
+}

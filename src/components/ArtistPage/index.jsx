@@ -77,6 +77,7 @@ export default class ArtistPage extends Component {
                                 song={song}
                                 key={song.id}
                                 onSelectSong={onSelectSong}
+                                artist={artist.username}
                             />
                         ))}
                     </ul>
