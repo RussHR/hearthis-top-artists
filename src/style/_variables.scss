@@ -21,6 +21,7 @@ $musicPlayer__audioControlsButton_width: $base-unit * 4.5;
 
 // media query values
 $medium-screen-min-width: 768px;
+$large-screen-min-width: 1025px;
 
 @mixin artwork-wrapper($size) {
     height: $size;

@@ -9,6 +9,15 @@
     margin: $base-unit 0;
     border-radius: $standard-border-radius;
     background-color: $opaque-background-color;
+
+    @media only screen and (min-width: $large-screen-min-width) {
+        display: inline-flex;
+        width: 49%;
+
+        &:nth-child(odd) {
+            margin-right: 2%;
+        }
+    }
 }
 .artistSong__artworkAndPlayButtonWrapper {
     width: $artistSong__artwork_height;
