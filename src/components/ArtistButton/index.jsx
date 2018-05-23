@@ -9,8 +9,18 @@ import './artist_button.scss';
 export default function ArtistButton({ artist, onClick }) {
     return (
         <li>
-            <button className="artistList__artistButton" onClick={onClick}>
-                {artist.username}
+            <button className="artistButton" onClick={onClick}>
+                <span className="artistButton__avatarWrapper">
+                    <img
+                        className="artistButton__avatar"
+                        src={artist.avatar_url}
+                        alt={`Avatar of ${artist.username}.`}
+                    />
+                </span>
+                <span>
+                    <h3 className="artistButton__username">{artist.username}</h3>
+                    Example Genre, Example Genre, Example Genre
+                </span>
             </button>
         </li>
     );

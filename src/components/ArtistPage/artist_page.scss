@@ -23,7 +23,7 @@
     overflow: scroll;
 }
 .artistPage__songList {
-    padding: $base-unit;
+    padding: $base-unit $base-unit $musicPlayer_height;
     margin: 0;
     list-style: none;
 }

@@ -1,6 +1,6 @@
 /* eslint-disable no-undef, quotes */
 import { expect } from 'chai';
-import { shallow } from 'enzyme';
+import { shallow, render } from 'enzyme';
 import React from 'react';
 import { fake } from 'sinon';
 
@@ -26,5 +26,15 @@ describe('<ArtistButton />', () => {
         const wrapper = shallow(<ArtistButton artist={mockArtist} onClick={onClick} />);
         wrapper.find('button').simulate('click');
         expect(onClick.calledOnce).to.be.true;
+    });
+
+    it('should render the artist avatar', () => {
+        const wrapper = render(<ArtistButton artist={mockArtist} onClick={onClick} />);
+        expect(wrapper.find('img').attr('src')).to.equal(mockArtist.avatar_url);
+    });
+
+    it('should render the artist username', () => {
+        const wrapper = render(<ArtistButton artist={mockArtist} onClick={onClick} />);
+        expect(wrapper.html()).to.contain(mockArtist.username);
     });
 });

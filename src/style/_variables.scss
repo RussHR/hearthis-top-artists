@@ -1,7 +1,12 @@
 $base-unit: 16px;
 
+$standard-border-radius: $base-unit * 0.5;
+
+$opaque-background-color: rgba(0, 0, 0, 0.5);
+
 // heights
-$artistList__artistButton_height: $base-unit * 8;
+$artistList__artistButton_height: $base-unit * 7;
+$artistButton__avatar_height: $artistList__artistButton_height - ($base-unit);
 $artistSong_height: $base-unit * 8;
 $musicPlayer_height: $base-unit * 6;
 $musicPlayer__durationBar_height: $base-unit * 0.5;

@@ -1,7 +1,7 @@
 @import '../../style/variables';
 
 .artistList__artistButtons {
-    padding: $base-unit * 2;
+    padding: ($base-unit * 2) ($base-unit * 2) $musicPlayer_height;
     margin: 0;
     list-style: none;
 }
