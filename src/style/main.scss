@@ -16,4 +16,8 @@ body {
 }
 .sm-overflow-hidden {
     overflow: hidden;
+
+    @media only screen and (min-width: $medium-screen-min-width) {
+        overflow: visible;
+    }
 }

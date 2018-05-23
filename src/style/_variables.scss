@@ -16,7 +16,11 @@ $musicPlayer__thumbnail_height: $base-unit * 5;
 $musicPlayer__audioControlsButton_height: $base-unit * 2.5 - 1px;
 
 // widths
+$artistList_medium-screen-width: $base-unit * 24;
 $musicPlayer__audioControlsButton_width: $base-unit * 4.5;
+
+// media query values
+$medium-screen-min-width: 768px;
 
 @mixin artwork-wrapper($size) {
     height: $size;

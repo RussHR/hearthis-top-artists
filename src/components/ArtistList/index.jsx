@@ -61,7 +61,7 @@ export default class ArtistList extends Component {
         const { artists, onClickArtist, fetchingMoreArtists } = this.props;
 
         return (
-            <main>
+            <main className="artistList">
                 <header>
                     <h1 className="artistList__appTitle">
                         hearthis.at Top Artists

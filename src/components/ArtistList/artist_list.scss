@@ -1,5 +1,10 @@
 @import '../../style/variables';
 
+.artistList {
+    @media only screen and (min-width: $medium-screen-min-width) {
+        width: $artistList_medium-screen-width;
+    }
+}
 .artistList__appTitle {
     margin: ($base-unit * 2) ($base-unit * 2) 0;
     text-align: center;

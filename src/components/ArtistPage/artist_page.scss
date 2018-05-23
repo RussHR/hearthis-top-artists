@@ -6,19 +6,33 @@
     position: fixed;
     top: 0;
     left: 0;
+
+    @media only screen and (min-width: $medium-screen-min-width) {
+        width: calc(100% - #{$artistList_medium-screen-width});
+        left: auto;
+        right: 0;
+    }
 }
 .artistPage__overlay {
     height: 100%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+
+    @media only screen and (min-width: $medium-screen-min-width) {
+        display: none;
+    }
 }
 .artistPage__close {
-    float: right;
+    display: block;
+    margin: 0 0 $base-unit auto;
     height: $base-unit * 2;
-    margin-bottom: $base-unit;
     border-radius: $standard-border-radius;
     background: none;
     color: white;
+
+    @media only screen and (min-width: $medium-screen-min-width) {
+        display: none;
+    }
 }
 .artistPage__detailsAndSongs {
     position: absolute;
@@ -29,6 +43,10 @@
     background: rgb(35, 84, 133);
     background: linear-gradient(0deg, rgb(190, 90, 19) 0%, rgb(210, 70, 20) 50%, rgb(226, 43, 40) 100%);
     overflow: scroll;
+
+    @media only screen and (min-width: $medium-screen-min-width) {
+        width: 100%;
+    }
 }
 .artistPage__details {
     padding: $base-unit;
