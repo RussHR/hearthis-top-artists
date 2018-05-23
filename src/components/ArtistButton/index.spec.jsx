@@ -11,7 +11,7 @@ describe('<ArtistButton />', () => {
         avatar_url: "https://images.hearthis.at/1/0/0/_/cache/images/remote/w512_q70_----100c0.jpg",
         id: "7263111",
         permalink_url: "https://hearthis.at/dj.vren/",
-        songs: [],
+        songs: [{ genre: 'House' }, { genre: 'Dance' }, { genre: 'Classical' }, { genre: 'Techno' }],
         uri: "https://api-v2.hearthis.at/dj.vren/",
         username: "DJ V-REN",
     };
@@ -36,5 +36,10 @@ describe('<ArtistButton />', () => {
     it('should render the artist username', () => {
         const wrapper = render(<ArtistButton artist={mockArtist} onClick={onClick} />);
         expect(wrapper.html()).to.contain(mockArtist.username);
+    });
+
+    it('should render at most 3 genres of the artist songs', () => {
+        const wrapper = render(<ArtistButton artist={mockArtist} onClick={onClick} />);
+        expect(wrapper.html()).to.contain('House, Dance, Classical');
     });
 });

@@ -19,19 +19,41 @@ export default function ArtistButton({ artist, onClick }) {
                 </span>
                 <span>
                     <h3 className="artistButton__username">{artist.username}</h3>
-                    Example Genre, Example Genre, Example Genre
+                    {getThreeMostRecentGenresFromSongs(artist.songs)}
                 </span>
             </button>
         </li>
     );
 }
 
+/**
+ * Returns up to the three most recent genres from a list of songs.
+ *
+ * @param {array} songs - array of objects with a `genre` property
+ * @returns {string} an array with new artists and updated artists
+ */
+const getThreeMostRecentGenresFromSongs = (songs) => {
+    const genres = [];
+
+    for (let i = 0; i < songs.length; i++) {
+        const genre = songs[i]['genre'];
+
+        if (genres.indexOf(genre) === -1) {
+            genres.push(songs[i]['genre']);
+        }
+
+        if (genres.length >= 3) {
+            return genres.join(', ');
+        }
+    }
+
+    return genres.join(', ');
+};
+
 ArtistButton.propTypes = {
     artist: PropTypes.shape({
         id: PropTypes.string.isRequired,
         avatar_url: PropTypes.string.isRequired,
-        permalink_url: PropTypes.string.isRequired,
-        uri: PropTypes.string.isRequired,
         username: PropTypes.string.isRequired
     }).isRequired,
     onClick: PropTypes.func.isRequired
