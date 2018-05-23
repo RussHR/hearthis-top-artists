@@ -8,19 +8,27 @@ import './music_player.scss';
  */
 export default class MusicPlayer extends PureComponent {
     /**
-     * Binds this.audio, and attaches a listener to update duration bar.
+     * Binds this.audio.
      */
     constructor(props) {
         super(props);
 
         this.audio = new Audio();
+        this.togglePause = this.togglePause.bind(this);
+        this.replaySong = this.replaySong.bind(this);
+    }
+
+    /**
+     * Sets up the progress bar for playing songs.
+     */
+    componentDidMount() {
+        this.durationMarkerEl.style.transform = `scale3d(0, 1, 1)`;
+
         this.audio.addEventListener('timeupdate', () => {
             const scaleX = this.audio.currentTime / this.audio.duration;
             this.durationMarkerEl.style.transform = `scale3d(${scaleX}, 1, 1)`;
         });
 
-        this.togglePause = this.togglePause.bind(this);
-        this.replaySong = this.replaySong.bind(this);
     }
 
     /**
@@ -39,6 +47,10 @@ export default class MusicPlayer extends PureComponent {
      * @returns {undefined}
      */
     togglePause() {
+        if (this.props.song.stream_url === null) {
+            return;
+        }
+
         if (this.audio.paused) {
             this.audio.play();
         } else {
@@ -60,15 +72,32 @@ export default class MusicPlayer extends PureComponent {
 
         return (
             <section className="musicPlayer">
-                {song.title}
-                <button onClick={this.togglePause}>
-                    Play/Pause
-                </button>
-                <button onClick={this.replaySong}>
-                    Replay Song
-                </button>
-                <div className="musicPlayer__durationBar">
-                    <div className="musicPlayer__durationMarker" ref={c => this.durationMarkerEl = c} />
+                <div className="musicPlayer__thumbnailWrapper">
+                    {song.thumb && (
+                        <img
+                            className="musicPlayer__thumbnail"
+                            src={song.thumb}
+                            alt={`Thumbnail for the song ${song.title}`}
+                        />
+                    )}
+                </div>
+
+                <div className="musicPlayer__songDetailsAndProgress">
+                    <div className="musicPlayer__songDetails">
+                        {song.title}
+                    </div>
+
+                    <div className="musicPlayer__durationBar">
+                        <div className="musicPlayer__durationMarker" ref={c => this.durationMarkerEl = c} />
+                    </div>
+                </div>
+                <div className="musicPlayer__audioControls">
+                    <button onClick={this.togglePause} className="musicPlayer__audioControlsButton">
+                        &#9654; / &#10073;&#10073;
+                    </button>
+                    <button onClick={this.replaySong} className="musicPlayer__audioControlsButton">
+                        Replay
+                    </button>
                 </div>
             </section>
         );
@@ -76,17 +105,20 @@ export default class MusicPlayer extends PureComponent {
 }
 
 MusicPlayer.propTypes = {
-    // song is only undefined when the app first loads
+    /* song is only undefined when the app first loads */
     song: PropTypes.shape({
-        artwork_url: PropTypes.string,
-        stream_url: PropTypes.string,
-        title: PropTypes.string.isRequired
+        /* Image url for the song's thumbnail */
+        thumb: PropTypes.string,
+        /* Title of the song */
+        title: PropTypes.string.isRequired,
+        /* Stream url of the song */
+        stream_url: PropTypes.string
     })
 };
 
 MusicPlayer.defaultProps = {
     song: {
-        artwork_url: null,
+        thumb: null,
         stream_url: null,
         title: 'Choose a song.'
     }

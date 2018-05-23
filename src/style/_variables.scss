@@ -12,6 +12,11 @@ $artistSong_playButton_height: $base-unit * 3;
 $artistSong__artwork_height: $base-unit * 6;
 $musicPlayer_height: $base-unit * 6;
 $musicPlayer__durationBar_height: $base-unit * 0.5;
+$musicPlayer__thumbnail_height: $base-unit * 5;
+$musicPlayer__audioControlsButton_height: $base-unit * 2.5 - 1px;
+
+// widths
+$musicPlayer__audioControlsButton_width: $base-unit * 4.5;
 
 @mixin artwork-wrapper($size) {
     height: $size;
