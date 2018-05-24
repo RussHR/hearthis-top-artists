@@ -18,6 +18,7 @@
 .musicPlayer__thumbnail {
     max-height: $musicPlayer__thumbnail_height;
     max-width: $musicPlayer__thumbnail_height;
+    border-radius: $standard-border-radius;
 }
 .musicPlayer__songDetailsAndProgress {
     padding: 0 ($base-unit * 0.5);

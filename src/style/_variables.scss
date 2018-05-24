@@ -6,10 +6,10 @@ $opaque-background-color: rgba(0, 0, 0, 0.5);
 
 // heights
 $artistList__artistButton_height: $base-unit * 7;
-$artistButton__avatar_height: $artistList__artistButton_height - ($base-unit);
+$artistButton__avatar_height: $artistList__artistButton_height - ($base-unit * 3);
 $artistSong_height: $base-unit * 8;
 $artistSong_playButton_height: $base-unit * 3;
-$artistSong__artwork_height: $base-unit * 6;
+$artistSong__artwork_height: $base-unit * 4;
 $musicPlayer_height: $base-unit * 6;
 $musicPlayer__durationBar_height: $base-unit * 0.5;
 $musicPlayer__thumbnail_height: $base-unit * 5;

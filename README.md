@@ -60,6 +60,7 @@ Redux is great, but it introduces a lot of overhead and complexity. In this part
 * Better PropTypes documentation.
 * Stronger testing. I had to leave a lot out because I decided not to configure JSDOM, which would've allowed me to write more thorough tests. Because I didn't configure JSDOM, tests would throw errors whenever there was a reference to client-specific objects like `window` and `Audio`.
 * Explore design more. I spent so much time on the logic, the responsiveness was almost an afterthought.
+* Implement more music controls.
 * Sleep! Exercise! Eat well.
 
 

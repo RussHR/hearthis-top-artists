@@ -10,7 +10,7 @@
     text-align: center;
 }
 .artistList__artistButtons {
-    padding: ($base-unit * 2) ($base-unit * 2) $musicPlayer_height;
+    padding: ($base-unit * 2) $base-unit $musicPlayer_height;
     margin: 0;
     list-style: none;
 }
