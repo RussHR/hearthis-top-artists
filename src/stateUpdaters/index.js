@@ -7,7 +7,7 @@ import { cloneDeep, findIndex } from 'lodash';
  * @param {array} tracks - objects with data for the top tracks
  * @returns {array} an array with new artists and updated artists
  */
-export function useTrackstoAddArtists(prevArtists, tracks) {
+export function useTrackstoAddArtists(prevArtists = [], tracks = []) {
     const artists = cloneDeep(prevArtists);
 
     tracks.forEach(track => {
@@ -46,7 +46,7 @@ export function useTrackstoAddArtists(prevArtists, tracks) {
  * @param {array} songs - new songs to add
  * @returns {array} an array including the updated artist
  */
-export function addSongsToArtist(prevArtists, artistIndex, songs) {
+export function addSongsToArtist(prevArtists = [], artistIndex = null, songs = []) {
     // prevent error where prevArtists[artistIndex] does not exist
     if (!prevArtists[artistIndex]) {
         return;
