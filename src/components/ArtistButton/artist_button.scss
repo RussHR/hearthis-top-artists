@@ -21,4 +21,5 @@
 .artistButton__username {
     margin: 0 0 ($base-unit * 0.5);
     @include break-word();
+    hyphens: auto;
 }

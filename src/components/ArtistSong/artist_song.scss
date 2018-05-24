@@ -38,6 +38,7 @@
 }
 .artistSong_title {
     @include break-word();
+    hyphens: auto;
     margin: 0 0 ($base-unit * 0.5);
 }
 .artistSong_permalinkUrl {

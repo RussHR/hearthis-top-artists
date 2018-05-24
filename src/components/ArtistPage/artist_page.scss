@@ -64,6 +64,7 @@
 .artistPage__username {
     margin-top: 0;
     @include break-word();
+    hyphens: auto;
 }
 .artistPage__songList {
     padding: $base-unit $base-unit $musicPlayer_height;
