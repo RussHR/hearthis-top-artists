@@ -43,6 +43,7 @@
     background: rgb(35, 84, 133);
     background: linear-gradient(0deg, rgb(190, 90, 19) 0%, rgb(210, 70, 20) 50%, rgb(226, 43, 40) 100%);
     overflow: scroll;
+    -webkit-overflow-scrolling: touch;
 
     @media only screen and (min-width: $medium-screen-min-width) {
         width: 100%;

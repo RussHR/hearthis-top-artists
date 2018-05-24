@@ -108,8 +108,7 @@ export default class MusicPlayer extends PureComponent {
                 </div>
                 <div className="musicPlayer__audioControls">
                     <button onClick={this.togglePause} className="musicPlayer__audioControlsButton">
-                        Play/
-                        Pause
+                        Play/<br />Pause
                     </button>
                     <button onClick={this.replaySong} className="musicPlayer__audioControlsButton">
                         Replay

@@ -57,6 +57,7 @@
 .artistSong_playButton {
     height: $artistSong_playButton_height;
     width: $artistSong_playButton_height;
+    padding: 0;
     background: none;
     @include button-base();
 }

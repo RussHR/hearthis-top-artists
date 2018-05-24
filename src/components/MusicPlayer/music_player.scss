@@ -63,6 +63,7 @@
     height: $musicPlayer__audioControlsButton_height;
     width: $musicPlayer__audioControlsButton_width;
     display: block;
+    padding: 0;
     background: none;
     @include button-base();
 
