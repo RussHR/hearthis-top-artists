@@ -29,6 +29,7 @@
     border-radius: $standard-border-radius;
     background: none;
     color: white;
+    @include button-base();
 
     @media only screen and (min-width: $medium-screen-min-width) {
         display: none;
