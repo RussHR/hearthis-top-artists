@@ -43,3 +43,11 @@ $large-screen-min-width: 1025px;
     word-wrap: break-word;
     word-break: break-word;
 }
+
+@mixin button-base() {
+    border: 1px solid white;
+    border-radius: $standard-border-radius;
+    color: white;
+    -webkit-appearance: none;
+    cursor: pointer;
+}

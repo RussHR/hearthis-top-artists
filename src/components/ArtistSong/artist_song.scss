@@ -47,8 +47,6 @@
 .artistSong_playButton {
     height: $artistSong_playButton_height;
     width: $artistSong_playButton_height;
-    border: 1px solid white;
-    border-radius: $standard-border-radius;
     background: none;
-    color: white;
+    @include button-base();
 }

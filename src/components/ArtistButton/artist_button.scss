@@ -8,13 +8,9 @@
     width: 100%;
     padding: $base-unit;
     margin: $base-unit 0;
-    border: 1px solid white;
-    border-radius: $standard-border-radius;
     background-color: $opaque-background-color;
-    color: white;
     text-align: left;
-    -webkit-appearance: none;
-    cursor: pointer;
+    @include button-base();
 }
 .artistButton__avatarWrapper {
     @include artwork-wrapper($artistButton__avatar_height);

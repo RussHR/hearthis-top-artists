@@ -62,9 +62,8 @@
     height: $musicPlayer__audioControlsButton_height;
     width: $musicPlayer__audioControlsButton_width;
     display: block;
-    color: white;
-    border-radius: $standard-border-radius;
     background: none;
+    @include button-base();
 
     &:first-child {
         margin-bottom: 2px;
